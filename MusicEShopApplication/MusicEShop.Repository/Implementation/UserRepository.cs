@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MusicEShop.Domain.Identity;
 using MusicEShop.Repository.Interface;
@@ -20,11 +20,6 @@ namespace MusicEShop.Repository.Implementation
         {
             this.context = context;
             entities = context.Set<MusicEShopUser>();
-        }
-
-        public void AssignRole(MusicEShopUser user, string roleName)
-        {
-            throw new NotImplementedException();
         }
 
         public void Delete(MusicEShopUser entity)
@@ -52,11 +47,6 @@ namespace MusicEShop.Repository.Implementation
         public IEnumerable<MusicEShopUser> GetAll()
         {
             return entities.AsEnumerable();
-        }
-
-        public IEnumerable<string> GetUserRoles(MusicEShopUser user)
-        {
-            throw new NotImplementedException();
         }
 
         public void Insert(MusicEShopUser entity)

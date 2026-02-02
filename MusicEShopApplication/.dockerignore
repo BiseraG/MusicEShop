@@ -1,0 +1,20 @@
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+
+# IDE and editor files
+**/.vs/
+**/.idea/
+**/*.user
+**/*.suo
+
+# Git
+**/.git/
+**/.gitignore
+
+# Environment files (secrets - pass at runtime instead)
+**/.env
+
+# Documentation
+**/*.md

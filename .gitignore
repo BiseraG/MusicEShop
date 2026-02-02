@@ -25,3 +25,7 @@ MusicEShopApplication/.vs/
 /MusicEShopApplication/.vs/MusicEShopApplication/FileContentIndex/5068adf7-a8b9-42c2-9af6-666a2b2acfcc.vsidx
 /MusicEShopApplication/.vs/MusicEShopApplication/FileContentIndex/66e761b7-28aa-4fb0-8e2d-b820b8eeed22.vsidx
 /MusicEShopApplication/MusicEShop.Web/appsettings.json
+
+# Environment variables (contains secrets)
+.env
+env.docker

@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,16 +11,15 @@ namespace MusicEShop.Web.Controllers
     [Authorize]
     public class AlbumsController : Controller
     {
-        private readonly IBookingService _bookingService;
         private readonly IAlbumService _albumService;
         private readonly IArtistService _artistService;
         private readonly ICartService _cartService;
-        public AlbumsController(IAlbumService albumService, IArtistService artistService, ICartService cartService, IBookingService bookingService)
+
+        public AlbumsController(IAlbumService albumService, IArtistService artistService, ICartService cartService)
         {
             _albumService = albumService;
             _artistService = artistService;
             _cartService = cartService;
-            _bookingService = bookingService;
         }
         public IActionResult Index()
         {
@@ -33,13 +32,6 @@ namespace MusicEShop.Web.Controllers
             return View(albums);
         }
 
-        public  IActionResult External()
-        {
-            var bookings = _bookingService.GetAllBookings();
-           
-
-            return View(bookings);
-        }
         public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
@@ -57,14 +49,12 @@ namespace MusicEShop.Web.Controllers
             return View(album);
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["ArtistId"] = new SelectList(_artistService.GetAllArtists(), "Id", "Name");
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Title,Genre,Details,ReleaseDate,CoverImage,Price,ArtistId,Id")] Album album)
@@ -83,7 +73,6 @@ namespace MusicEShop.Web.Controllers
             return View(album);
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult  Edit(Guid id)
         {
             if (id == null)
@@ -102,7 +91,6 @@ namespace MusicEShop.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id, [Bind("Title,Genre,Details,ReleaseDate,Price,CoverImage,ArtistId,Id")] Album album)
         {
             if (id != album.Id)
@@ -133,7 +121,6 @@ namespace MusicEShop.Web.Controllers
             return View(album);
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Delete(Guid id)
         {
             if (id == null)
@@ -149,7 +136,6 @@ namespace MusicEShop.Web.Controllers
             return View(album);
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(Guid id)

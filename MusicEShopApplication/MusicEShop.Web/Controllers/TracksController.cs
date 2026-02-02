@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -48,7 +48,6 @@ namespace MusicEShop.Web.Controllers
             return View(track);
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["AlbumId"] = new SelectList(_albumService.GetAllAlbums(), "Id", "Title");
@@ -57,7 +56,6 @@ namespace MusicEShop.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult Create([Bind("Title,Duration,Price,AlbumId,Id")] Track track)
         {
             if (ModelState.IsValid)
@@ -72,7 +70,6 @@ namespace MusicEShop.Web.Controllers
             return View(track);
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id)
         {
             if (id == null)
@@ -91,7 +88,6 @@ namespace MusicEShop.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id, [Bind("Title,Duration,Price,AlbumId,Id")] Track track)
         {
             if (id != track.Id)
@@ -122,7 +118,6 @@ namespace MusicEShop.Web.Controllers
             return View(track);
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Delete(Guid id)
         {
             if (id == null)
