@@ -13,7 +13,9 @@ LoadOptions.TraversePath().Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found. Set it in .env as CONNECTIONSTRINGS__DEFAULTCONNECTION or in appsettings.json.");
+var connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRINGS__DEFAULTCONNECTION")
+    ?? builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string not found. Set CONNECTIONSTRINGS__DEFAULTCONNECTION in .env or DefaultConnection in appsettings.json.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
