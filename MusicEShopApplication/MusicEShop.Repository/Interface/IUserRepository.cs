@@ -1,4 +1,4 @@
-﻿using MusicEShop.Domain.Identity;
+using MusicEShop.Domain.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,5 @@ namespace MusicEShop.Repository.Interface
         void Insert(MusicEShopUser entity);
         void Update(MusicEShopUser entity);
         void Delete(MusicEShopUser entity);
-        void AssignRole(MusicEShopUser user, string roleName);
-        IEnumerable<string> GetUserRoles(MusicEShopUser user);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,7 +47,6 @@ namespace MusicEShop.Web.Controllers
         }
 
         // GET: Artists/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +55,6 @@ namespace MusicEShop.Web.Controllers
         // POST: Artists/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Name,Country,Genre,ArtistImage,Id")] Artist artist)
@@ -76,7 +74,6 @@ namespace MusicEShop.Web.Controllers
 
 
         // GET: Artists/Edit/5
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id)
         {
             if (id == null)
@@ -97,7 +94,6 @@ namespace MusicEShop.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id, [Bind("Name,Country,Genre,ArtistImage,Id")] Artist artist)
         { 
             if (id != artist.Id)
@@ -128,7 +124,6 @@ namespace MusicEShop.Web.Controllers
         }
 
         // GET: Artists/Delete/5
-        [Authorize(Roles = "Admin")]
         public IActionResult Delete(Guid id)
         {
             if (id == null)
